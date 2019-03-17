@@ -84,7 +84,7 @@ export default {
             align-self: center;
             width: 23px;
             height: 23px;
-            background: url('../../public/logo.png') center center no-repeat;
+            background: url('~@theme/images/logo.png') center center no-repeat;
             background-size: 23px;
             margin-right: 16px;
             margin-bottom: 3px;

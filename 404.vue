@@ -18,6 +18,9 @@ export default {
         }
     }
 };
+// <style src="../styles/theme.styl" lang="stylus">
+
+// </style>
 </script>
 
-<style src="../styles/theme.styl" lang="stylus"></style>
+

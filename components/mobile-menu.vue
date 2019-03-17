@@ -94,8 +94,8 @@ export default {
         z-index: 12;
         top: 50%;
         margin-top: -18px;
-        left: 10px;
-        background: url('../../assets/img/menu.png') center center no-repeat;
+        left: 10px; 
+        background: url('~@theme/images/menu.png') center center no-repeat;
         background-size: 24px;
         margin-left: 0;
     }

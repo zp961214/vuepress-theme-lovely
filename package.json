@@ -1,19 +1,15 @@
 {
-  "name": "vuepress",
+  "name": "vuepress-theme-lovely",
   "version": "0.0.1",
   "description": "a lovely vuepress theme",
   "author": "zp961214",
-  "main":"layouts/Layout.vue",
-  "workspaces": [
-    "docs/.vuepress/*",
-    "docs/post"
-  ],
+  "main":"index.js",
   "scripts": {
     "build": "vuepress build docs",
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint --fix --ext .js,.vue docs",
     "dev": "vuepress dev docs --no-cache"
-  },
+  }, 
   "repository": {
     "type": "git",
     "url": "git+https://github.com/zp961214/vuepress-theme-lovely"

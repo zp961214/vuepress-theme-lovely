@@ -10,7 +10,7 @@
 
 <script>
 import DisqusJS from 'disqusjs';
-import animate from '@assets/js/animate.js';
+import animate from '@theme/assets/js/animate.js';
 import appContainer from '@theme/components/app-container';
 
 export default {

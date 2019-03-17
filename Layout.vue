@@ -17,7 +17,7 @@ import appHeader from '@theme/components/app-header.vue';
 import mobileMenu from '@theme/components/mobile-menu';
 import bannerSection from '@theme/components/banner-section';
 import vFooter from '@theme/components/v-footer';
-import animate from '@assets/js/animate.js';
+import animate from '@theme/assets/js/animate.js';
 export default {
     name: 'Layout',
     components: {

@@ -1,2 +1,2 @@
-import pagination from './modules/pagination.js';
+import pagination from './modules/pagination.vue';
 export default pagination;

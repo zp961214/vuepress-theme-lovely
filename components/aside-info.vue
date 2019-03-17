@@ -93,7 +93,7 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-@import '../../assets/icon/href/iconfont.css';
+@import '~@theme/assets/icon/href/iconfont.css';
 .site-bar {
     position: fixed;
     left: 50%;

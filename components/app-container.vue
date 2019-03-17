@@ -38,7 +38,7 @@
 </template>
 
 <script>
-import animate from '@assets/js/animate.js';
+import animate from '@theme/assets/js/animate.js';
 import asideInfo from '@theme/components/aside-info';
 export default {
     name: 'app-container',
