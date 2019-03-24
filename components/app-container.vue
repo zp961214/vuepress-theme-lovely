@@ -2,7 +2,7 @@
     <div class="app-container">
         <div class="app-container-container">
             <div class="app-container-wrapper">
-                <slot />
+                <slot/>
             </div>
             <section class="section-wrapper">
                 <div :class="[{ affix }, 'container-section']">
@@ -21,33 +21,33 @@
                             :key="item.title"
                             @click="scrollToView(item.slug)"
                             v-for="(item, index) in headers"
-                        >
-                            {{ index + 1 + '. ' + item.title }}
-                        </li>
+                        >{{ index + 1 + '. ' + item.title }}</li>
                     </ul>
-                    <div ref="b" :class="[{ asideShow: !headers }, 'aside-container']"><aside-info class="side-bar" /></div>
+                    <div :class="[{ asideShow: !headers }, 'aside-container']" ref="b">
+                        <aside-info class="side-bar"/>
+                    </div>
                 </div>
             </section>
         </div>
         <div class="footer-section">
             <div class="footer-wrapper">
-                <slot name="footer" />
+                <slot name="footer"/>
             </div>
         </div>
     </div>
 </template>
 
 <script>
-import animate from '@theme/assets/js/animate.js';
-import asideInfo from '@theme/components/aside-info';
+import animate from "@theme/assets/js/animate.js";
+import asideInfo from "@theme/components/aside-info";
 export default {
-    name: 'app-container',
+    name: "app-container",
     components: { asideInfo },
     data() {
         return {
             affix: false,
             activeCurrent: -1,
-            sectionActive: '文章目录'
+            sectionActive: "文章目录"
         };
     },
     /** 文章有目录时的逻辑 */
@@ -57,14 +57,18 @@ export default {
         },
 
         headers_ele() {
-            return this.headers ? this.headers.map(v => this.getScrollTag(v.slug).el.offsetTop - 60) : null;
+            return this.headers
+                ? this.headers.map(
+                      v => this.getScrollTag(v.slug).el.offsetTop - 60
+                  )
+                : null;
         },
         is_menu_show() {
-            return this.headers && this.sectionActive === '文章目录';
+            return this.headers && this.sectionActive === "文章目录";
         },
 
         is_asideInfo_show() {
-            return !this.headers || this.sectionActive === '文章站点';
+            return !this.headers || this.sectionActive === "文章站点";
         }
     },
     methods: {
@@ -74,26 +78,30 @@ export default {
             const time = 200;
             const type = [{ opacity: 0.5 }, time];
             if (this.is_menu_show) {
-                animate(a, ...type, () => this.cb(a, 'block', time));
-                animate(b, ...type, () => this.cb(b, 'none', time));
+                animate(a, ...type, () => this.cb(a, "block", time));
+                animate(b, ...type, () => this.cb(b, "none", time));
             } else {
-                animate(a, ...type, () => this.cb(a, 'none', time));
-                animate(b, ...type, () => this.cb(b, 'block', time));
+                animate(a, ...type, () => this.cb(a, "none", time));
+                animate(b, ...type, () => this.cb(b, "block", time));
             }
         },
 
         cb(el, type, time) {
-            if (type === 'block') (el.style.display = 'block'), animate(el, { opacity: 1 }, time);
-            if (type === 'none') (el.style.display = 'none'), animate(el, { opacity: 0 }, time);
+            if (type === "block")
+                (el.style.display = "block"), animate(el, { opacity: 1 }, time);
+            if (type === "none")
+                (el.style.display = "none"), animate(el, { opacity: 0 }, time);
         },
 
         handlerClick(link) {
             this.$router.push(link);
         },
 
-        getScrollTag(id, Selector = '#') {
+        getScrollTag(id, Selector = "#") {
             const el = document.querySelector(Selector + id);
-            const docScrollTag = document.body.scrollTop ? document.body : document.documentElement;
+            const docScrollTag = document.body.scrollTop
+                ? document.body
+                : document.documentElement;
             return { el, docScrollTag };
         },
 
@@ -103,7 +111,10 @@ export default {
         },
 
         scrollHandle() {
-            const { el, docScrollTag } = this.getScrollTag('app-container', '.');
+            const { el, docScrollTag } = this.getScrollTag(
+                "app-container",
+                "."
+            );
             const { scrollTop } = docScrollTag;
             this.affix = scrollTop > el.offsetTop - 20;
             if (this.headers_ele) this.asideHandle(scrollTop);
@@ -120,12 +131,14 @@ export default {
     },
 
     mounted() {
-        this.refresh_scroll ? '详情页刷新保留滚动条位置' : this.scrollToView('app-container', '.', 30);
-        window.addEventListener('scroll', this.scrollHandle);
+        this.refresh_scroll
+            ? "详情页刷新保留滚动条位置"
+            : this.scrollToView("app-container", ".", 30);
+        window.addEventListener("scroll", this.scrollHandle);
     },
 
     beforeDestroy() {
-        window.removeEventListener('scroll', this.scrollHandle);
+        window.removeEventListener("scroll", this.scrollHandle);
     }
 };
 </script>
@@ -144,6 +157,7 @@ export default {
             border-radius: 5px;
             background: #fff;
             color: #34495e;
+            overflow-x: hidden; 
             .title {
                 font-size: 25px;
                 text-align: center;
