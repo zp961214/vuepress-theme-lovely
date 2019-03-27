@@ -1,6 +1,6 @@
 {
   "name": "vuepress-theme-lovely",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "a lovely vuepress theme",
   "author": "zp961214",
   "main": "index.js",
@@ -10,7 +10,7 @@
     "lint": "eslint --fix --ext .js,.vue docs",
     "dev": "vuepress dev docs --no-cache"
   },
-  "dependencies": { 
+  "dependencies": {
     "axios": "^0.18.0",
     "date-fns": "^1.30.1",
     "decode-uri-component": "^0.2.0",
