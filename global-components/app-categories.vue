@@ -7,17 +7,17 @@
 
 <script>
 import classify from '@theme/mixins/classify';
-import appContainer from '@theme/components/app-container';
+// import appContainer from '@theme/components/app-container';
 import categoriesBase from '@theme/components/categories/categories-base';
 import categoriesDesc from '@theme/components/categories/categories-desc';
 
 export default {
-    name: 'categories',
+    name: 'app-categories',
     mixins: [classify],
     components: {
         categoriesBase,
-        categoriesDesc,
-        appContainer
+        categoriesDesc
+        // appContainer
     },
 
     data() {

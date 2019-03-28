@@ -20,9 +20,11 @@
 <script>
 import SearchBox from '@SearchBox';
 import externalLinks from './externalLinks';
-export default {
+export default { 
     name: 'mobile-menu',
-    components: { SearchBox, externalLinks },
+    components: { 
+        SearchBox,
+     externalLinks },
     data() {
         return {
             scrollTop: null,

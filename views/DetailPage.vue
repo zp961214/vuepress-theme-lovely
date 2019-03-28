@@ -11,11 +11,9 @@
 <script>
 import DisqusJS from 'disqusjs';
 import animate from '@theme/assets/js/animate.js';
-import appContainer from '@theme/components/app-container';
 
 export default {
     name: 'DetailPage',
-    components: { appContainer },
     data() {
         return {
             affix: false,
@@ -37,6 +35,10 @@ export default {
 
         is_asideInfo_show() {
             return !this.headers || this.sectionActive === '文章站点';
+        },
+
+        DisqusJS() {
+            return this.$site.themeConfig.DisqusJS;
         }
     },
     methods: {
@@ -53,16 +55,11 @@ export default {
     },
 
     mounted() {
-        new DisqusJS({
-            shortname: 'izp-me',
-            siteName: 'izp.me',
-            identifier: document.location.origin + document.location.pathname + document.location.search,
-            url: document.location.origin + document.location.pathname + document.location.search,
-            api: 'https://disqus.skk.moe/disqus/',
-            apikey: 'HplZkNQIgZwjGaxqaWErD6XyEl0hzqnV08qqfG8dhTCQRWUK6glTCw8vz12pMCM3',
-            admin: 'valor_coc',
-            adminLabel: ''
-        });
+        if (this.DisqusJS) {
+            const { origin, pathname, search } = document.location;
+            const url = origin + pathname + search;
+            new DisqusJS({ ...this.DisqusJS, identifier: url, url });
+        }
     },
     beforeDestroy() {
         window.removeEventListener('scroll', this.scrollHandle);

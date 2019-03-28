@@ -21,12 +21,12 @@
 
 <script>
 import { format } from 'date-fns';
-import appContainer from '@theme/components/app-container';
+// import appContainer from '@theme/components/app-container';
 
 export default {
-    name: 'archives',
+    name: 'app-archives',
 
-    components: { appContainer },
+    // components: { appContainer },
 
     filters: {
         format(value, type) {

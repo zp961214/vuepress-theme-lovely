@@ -4,12 +4,7 @@
   "description": "a lovely vuepress theme",
   "author": "zp961214",
   "main": "index.js",
-  "scripts": {
-    "build": "vuepress build docs",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "lint": "eslint --fix --ext .js,.vue docs",
-    "dev": "vuepress dev docs --no-cache"
-  },
+  
   "dependencies": {
     "axios": "^0.18.0",
     "date-fns": "^1.30.1",
