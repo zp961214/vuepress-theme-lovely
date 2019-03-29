@@ -1,7 +1,7 @@
 <template>
     <aside class="site-bar">
         <div class="site-author">
-            <img alt="author-Avatar" src="~@theme/images/aside.jpg" />
+            <img alt="author-Avatar" :src="picUrl" />
             <p class="description"></p>
             <ul class="link-of-author-motion">
                 <li :key="i" @click="openPage(item.href)" v-for="(item, i) in hrefList">
@@ -67,6 +67,12 @@ export default {
 
         nav() {
             return this.front.nav || [];
+        },
+
+        picUrl() {
+            const { avatar } = this.$site.themeConfig;
+            if (avatar) return this.$withBase(avatar);
+            else return require('../images/aside.jpg');
         }
     },
     methods: {

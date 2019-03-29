@@ -1,4 +1,5 @@
 import decodeUriComponent from 'decode-uri-component';
+import animate from '@theme/assets/js/animate.js';
 
 export default {
     computed: {
@@ -23,6 +24,17 @@ export default {
 
         logCount() {
             return this.items.length || 0;
+        }
+    },
+    methods: {
+        scrollToView(id, Selector, offset = 0) {
+            const { el, docScrollTag } = this.getScrollTag(id, Selector);
+            animate(docScrollTag, { scrollTop: el.offsetTop - offset });
+        },
+        getScrollTag(id, Selector = '#') {
+            const el = document.querySelector(Selector + id);
+            const docScrollTag = document.body.scrollTop ? document.body : document.documentElement;
+            return { el, docScrollTag };
         }
     }
 };

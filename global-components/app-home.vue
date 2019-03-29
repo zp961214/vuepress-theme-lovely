@@ -1,5 +1,5 @@
 <template>
-    <app-container>
+    <app-container id="home">
         <post-item :content="content" :key="content.key" class="post-item" v-for="content in currentItems" />
         <div class="pagetion-wrapper">
             <pagination :current-page="currNum" :page-size="pageSize" :total="total" @current-change="currentChange" layout="prev, pager, next" />
@@ -133,6 +133,11 @@ $asideWidth: 285px;
 }
 </style>
 <style lang="scss">
+#home .app-container-wrapper {
+    padding: 0px;
+    background: unset;
+    overflow-x: unset;
+}
 .pagetion-wrapper {
     background: #fff;
     display: flex;

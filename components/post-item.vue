@@ -46,7 +46,7 @@ export default {
 
     computed: {
         date() {
-            return this.content.frontmatter.date || this.content.lastUpdated;
+            return this.content.frontmatter.date || this.content.lastUpdated || new Date();
         }
     },
 

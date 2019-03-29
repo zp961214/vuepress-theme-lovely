@@ -37,7 +37,7 @@ export default {
     computed: {
         items() {
             const date = this.date;
-            const is_post = new RegExp(`^/post/(.*)/.*`);
+            const is_post = new RegExp(`^/post/(${this.type})/.*`);
             const post = this.$site.pages.filter(v => is_post.test(v.path)).sort((a, b) => date(b) - date(a));
             return post.map(v => ((v.classify = v.path.replace(is_post, '$1')), v));
         },
@@ -48,7 +48,7 @@ export default {
     },
     methods: {
         date(ele) {
-            return ele.lastUpdated ? ele.lastUpdated : ele.frontmatter.date;
+            return ele.lastUpdated ? ele.lastUpdated : ele.frontmatter.date || new Date();
         }
     }
 };

@@ -38,7 +38,7 @@ export default {
 
     watch: {
         isDesc() {
-            this.scrollToView('categories', '.');
+            this.scrollToView('app-container', '.');
         }
     }
 };

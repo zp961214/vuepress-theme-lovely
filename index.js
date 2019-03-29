@@ -1,6 +1,10 @@
 const path = require('path');
 const resolve = (...arg) => path.resolve(...arg);
-module.exports = (options, ctx) => ({
+/**
+ * @param options
+ * @param ctx
+ */
+module.exports = () => ({
     alias() {
         return {
             '@theme': resolve(__dirname, 'theme')
