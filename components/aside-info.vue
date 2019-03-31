@@ -4,7 +4,7 @@
             <img alt="author-Avatar" :src="picUrl" />
             <p class="description"></p>
             <ul class="link-of-author-motion">
-                <li :key="i" @click="openPage(item.href)" v-for="(item, i) in hrefList">
+                <li :key="i" @click="openPage(item.href)" v-for="(item, i) in asideLink">
                     <i :class="['iconfont', item.icon]"></i>
                     <span>{{ item.label }}</span>
                 </li>
@@ -31,31 +31,26 @@ export default {
     mixins: [classify],
     data() {
         return {
-            hrefList: [
+            hrefList_default: [
                 {
                     icon: 'icon-tubiao214',
-                    label: '新浪微博',
-                    href: 'http://www.baidu.com'
+                    label: '新浪微博'
                 },
                 {
                     icon: 'icon-zhihu',
-                    label: '知乎',
-                    href: ''
+                    label: '知乎'
                 },
                 {
                     icon: 'icon-QQ',
-                    label: 'QQ',
-                    href: ''
+                    label: 'QQ'
                 },
                 {
                     icon: 'icon-wo',
-                    label: '关于我',
-                    href: ''
+                    label: '关于我'
                 },
                 {
                     icon: 'icon-github',
-                    label: 'Github',
-                    href: ''
+                    label: 'Github'
                 }
             ]
         };
@@ -69,9 +64,15 @@ export default {
             return this.front.nav || [];
         },
 
+        asideLink() {
+            const asideLink = this.$site.themeConfig.asideLink || ['http://www.baidu.com'];
+            if (asideLink) return this.hrefList_default.map((v, i) => ((v.href = asideLink[i]), v));
+            return this.hrefList_default;
+        },
+
         picUrl() {
-            const { avatar } = this.$site.themeConfig;
-            if (avatar) return this.$withBase(avatar);
+            const { sitePic } = this.$site.themeConfig;
+            if (sitePic) return this.$withBase(sitePic);
             else return require('../images/aside.jpg');
         }
     },
