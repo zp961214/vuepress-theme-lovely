@@ -7,7 +7,7 @@
                     <span>分类</span>
                 </div>
                 <ul>
-                    <li v-for="item in items" :key="item.key" @click="$router.push({ path: item.path })">
+                    <li v-for="item in post" :key="item.key" @click="$router.push({ path: item.path })">
                         <span>{{ date(item) | format('YYYY-MM-DD') }}</span> <span>{{ item.title }} </span>
                     </li>
                 </ul>
@@ -18,6 +18,8 @@
 
 <script>
 import { format } from 'date-fns';
+import decodeUriComponent from 'decode-uri-component';
+
 export default {
     name: 'categories-desc',
     data() {
@@ -35,10 +37,14 @@ export default {
     },
 
     computed: {
-        items() {
+        post() {
             const date = this.date;
-            const is_post = new RegExp(`^/post/(${this.type})/.*`);
-            const post = this.$site.pages.filter(v => is_post.test(v.path)).sort((a, b) => date(b) - date(a));
+            const pages = JSON.parse(JSON.stringify(this.$site.pages));
+            const is_post = new RegExp(`(^/post/)(${this.type})/.*`);
+            const post = pages
+                .map(v => ((v.path = decodeUriComponent(v.path.replace(is_post, '$1'))), v))
+                .filter(v => is_post.test(v.path))
+                .sort((a, b) => date(b) - date(a));
             return post.map(v => ((v.classify = v.path.replace(is_post, '$1')), v));
         },
 

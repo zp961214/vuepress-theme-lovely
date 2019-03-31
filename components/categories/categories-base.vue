@@ -2,9 +2,7 @@
     <div class="categories-base">
         <h3 class="title">分类</h3>
         <div class="body">
-            <div class="categories-count">
-                目前共计 5 个分类
-            </div>
+            <div class="categories-count">目前共计 {{ classifyCount }} 个分类</div>
             <ul v-for="(value, key) in classifyObj" :key="key">
                 <li>
                     <span @click="routerGo(key)">{{ key | initialUpperCase }}</span>
