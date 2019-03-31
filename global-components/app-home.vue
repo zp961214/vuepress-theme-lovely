@@ -11,14 +11,12 @@
 import decodeUriComponent from 'decode-uri-component';
 import postItem from '@theme/components/post-item';
 import pagination from '@theme/components/pagination';
-// import appContainer from '@theme/components/app-container';
 export default {
     name: 'app-home',
 
     components: {
         postItem,
         pagination
-        // appContainer
     },
 
     data() {

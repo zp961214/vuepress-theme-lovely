@@ -20,11 +20,12 @@
 <script>
 import SearchBox from '@SearchBox';
 import externalLinks from './externalLinks';
-export default { 
+export default {
     name: 'mobile-menu',
-    components: { 
+    components: {
         SearchBox,
-     externalLinks },
+        externalLinks
+    },
     data() {
         return {
             scrollTop: null,
@@ -58,7 +59,7 @@ export default {
         },
 
         init() {
-            document.addEventListener('click', e => {
+            document.addEventListener('click', () => {
                 this.value = false;
             });
         }
@@ -66,6 +67,7 @@ export default {
 
     mounted() {
         window.addEventListener('scroll', this.setScrollTop);
+        window.onresize = () => (this.value = false);
         this.init();
     },
 
@@ -96,7 +98,7 @@ export default {
         z-index: 12;
         top: 50%;
         margin-top: -18px;
-        left: 10px; 
+        left: 10px;
         background: url('~@theme/images/menu.png') center center no-repeat;
         background-size: 24px;
         margin-left: 0;

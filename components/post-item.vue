@@ -92,7 +92,7 @@ export default {
         color: #fff;
         text-align: center;
         .month {
-            margin-top: 0;
+            margin: 0;
             line-height: 16px;
         }
         .day {

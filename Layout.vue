@@ -40,6 +40,7 @@ export default {
     mounted() {
         this.title = document.title;
         this.scrollTopInit();
+
         window.addEventListener('visibilitychange', this.visibilitychange);
         window.addEventListener('scroll', this.scrollHandle);
         // this.backTopStyle.top = -parseInt(window.innerHeight) + 'px';
