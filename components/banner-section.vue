@@ -1,10 +1,9 @@
 <template>
-    <div class="banner-section">
+    <div class="banner-section" :style="bannerSection">
         <div class="site-banner-author">
-            <img alt="avatar" class="avatar tada" src="~@theme/images/head.jpg" />
+            <img alt="avatar" class="avatar tada" :src="picUrl" />
             <div class="site-banner-desc">
-                <span> 你好啊 </span>
-                <span></span>
+                <span :key="i" v-for="(text, i) in bannerText"> {{ text }} </span>
             </div>
         </div>
     </div>
@@ -15,6 +14,21 @@ export default {
     name: 'banner-section',
     data() {
         return {};
+    },
+    computed: {
+        bannerUrl() {},
+
+        bannerText() {
+            const bannertext = this.$site.themeConfig && this.$site.themeConfig.bannertext;
+            console.log(bannertext);
+            if (Array.isArray(bannertext)) return bannertext;
+            return ['你好呀'];
+        },
+        picUrl() {
+            const avatar = this.$site.themeConfig && this.$site.themeConfig.avatar;
+            if (avatar) return this.$withBase(avatar);
+            else return require('../images/head.jpg');
+        }
     },
     methods: {}
 };
@@ -52,8 +66,10 @@ export default {
     justify-content: center;
     align-items: center;
     height: 500px;
-    background: url('../images/bg1.jpg') center center no-repeat;
+    background-position: center center;
+    background-repeat: no-repeat;
     background-size: cover;
+    background: #3eaf7c;
     .site-banner-author {
         width: 50%;
         height: 240px;
@@ -78,10 +94,10 @@ export default {
             span {
                 font-size: 16px;
                 font-weight: 700;
-                &:first-child {
+                &:nth-of-type(odd) {
                     color: #00a7e0;
                 }
-                &:last-child {
+                &:nth-of-type(even) {
                     color: #ff3f1a;
                 }
             }
