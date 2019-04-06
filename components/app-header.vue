@@ -14,6 +14,7 @@
 </template>
 <script>
 import SearchBox from '@SearchBox';
+import axios from 'axios';
 export default {
     components: { SearchBox },
     computed: {
@@ -34,7 +35,10 @@ export default {
             this.$router.push({ path: item.link });
         }
     },
-    mounted() {}
+    async mounted() {
+        const { data } = await axios.get('http://127.0.0.1:7001/post?limit=10&offset=0');
+        console.log(data);
+    }
 };
 </script>
 <style lang="scss" scoped>

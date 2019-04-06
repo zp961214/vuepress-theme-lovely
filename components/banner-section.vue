@@ -1,12 +1,12 @@
 <template>
-    <div class="banner-section" :style="bannerSection">
+    <section class="banner-section" :style="bannerSection">
         <div class="site-banner-author">
             <img alt="avatar" class="avatar tada" :src="picUrl" />
             <div class="site-banner-desc">
                 <span :key="i" v-for="(text, i) in bannerText"> {{ text }} </span>
             </div>
         </div>
-    </div>
+    </section>
 </template>
 
 <script>
@@ -16,7 +16,11 @@ export default {
         return {};
     },
     computed: {
-        bannerUrl() {},
+        bannerSection() {
+            const bannerPic = this.$site.themeConfig && this.$site.themeConfig.bannerPic;
+            if (bannerPic) return { background: `url(${this.$withBase(bannerPic)})` };
+            return null;
+        },
 
         bannerText() {
             const bannertext = this.$site.themeConfig && this.$site.themeConfig.bannertext;
