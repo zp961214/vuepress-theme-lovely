@@ -4,12 +4,13 @@
             <p><span>© 2019 valor</span> | <a :href="ncSa" target="_blank">CC BY-NC-SA 4.0</a></p>
             <p>Powered by <a :href="Vuepress" target="_blank">VuePress</a>| Theme By valor</p>
             <p>Deployed on ubuntu server | Made with by valor</p>
-            <p>博客已运行 {{ date }} 天 (๑╹ヮ╹๑)ﾉ ,{{ observerCount }} 人看过此博客</p>
+            <p>博客已运行 {{ date }} 天 (๑╹ヮ╹๑)ﾉ,{{ observerCount }}人查看过此博客</p>
         </div>
     </div>
 </template>
 
 <script>
+import axios from 'axios';
 import { differenceInCalendarDays } from 'date-fns';
 export default {
     name: 'v-footer',
@@ -25,10 +26,17 @@ export default {
     computed: {},
 
     mounted() {
+        this.getCount();
         this.date = differenceInCalendarDays(new Date(), new Date('2019-01-13'));
     },
 
-    methods: {}
+    methods: {
+        async getCount() {
+            const b = `http://izp.me/blog`;
+            const { data } = await axios.get(b + '/observer');
+            this.observerCount = data.count;
+        }
+    }
 };
 </script>
 <style lang="scss" scoped>

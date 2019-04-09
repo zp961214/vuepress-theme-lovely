@@ -33,7 +33,7 @@ export default {
         return {
             hrefList_default: [
                 {
-                    icon: 'icon-tubiao214',
+                    icon: 'icon-weibo',
                     label: '新浪微博'
                 },
                 {
@@ -41,11 +41,11 @@ export default {
                     label: '知乎'
                 },
                 {
-                    icon: 'icon-QQ',
+                    icon: 'icon-twitter',
                     label: 'QQ'
                 },
                 {
-                    icon: 'icon-wo',
+                    icon: 'icon-geren4',
                     label: '关于我'
                 },
                 {
@@ -99,8 +99,9 @@ export default {
     }
 };
 </script>
+
 <style lang="scss" scoped>
-@import '~@theme/assets/icon/href/iconfont.css';
+@import url('http://at.alicdn.com/t/font_1073387_64squi8bedv.css');
 .site-bar {
     position: fixed;
     left: 50%;

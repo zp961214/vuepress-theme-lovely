@@ -18,13 +18,12 @@ export default {
     computed: {
         bannerSection() {
             const bannerPic = this.$site.themeConfig && this.$site.themeConfig.bannerPic;
-            if (bannerPic) return { background: `url(${this.$withBase(bannerPic)})` };
+            if (bannerPic) return { backgroundImage: `url(/${this.$withBase(bannerPic)})` };
             return null;
         },
 
         bannerText() {
             const bannertext = this.$site.themeConfig && this.$site.themeConfig.bannertext;
-            console.log(bannertext);
             if (Array.isArray(bannertext)) return bannertext;
             return ['你好呀'];
         },
@@ -73,7 +72,7 @@ export default {
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
-    background: #3eaf7c;
+    background-color: #3eaf7c;
     .site-banner-author {
         width: 50%;
         height: 240px;

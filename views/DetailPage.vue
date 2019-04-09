@@ -1,6 +1,6 @@
 <template>
     <div id="DetailPage">
-        <app-container>
+        <app-container @mounted="footerHandle">
             <h1 class="title">{{ this.$page.title }}</h1>
             <Content></Content>
             <div id="disqus_thread" slot="footer"></div>
@@ -9,6 +9,7 @@
 </template>
 
 <script>
+import axios from 'axios';
 import DisqusJS from 'disqusjs';
 import animate from '@theme/assets/js/animate.js';
 
@@ -51,15 +52,19 @@ export default {
         scrollToView(id, Selector, offset = 0) {
             const { el, docScrollTag } = this.getScrollTag(id, Selector);
             animate(docScrollTag, { scrollTop: el.offsetTop - offset });
+        },
+
+        footerHandle() {
+            if (this.DisqusJS) {
+                const { origin, pathname, search } = document.location;
+                const url = origin + pathname + search;
+                new DisqusJS({ ...this.DisqusJS, identifier: url, url });
+            }
         }
     },
 
     mounted() {
-        if (this.DisqusJS) {
-            const { origin, pathname, search } = document.location;
-            const url = origin + pathname + search;
-            new DisqusJS({ ...this.DisqusJS, identifier: url, url });
-        }
+        axios.post('http://izp.me/blog/post', null, { params: { title: this.$page.title } });
     },
     beforeDestroy() {
         window.removeEventListener('scroll', this.scrollHandle);

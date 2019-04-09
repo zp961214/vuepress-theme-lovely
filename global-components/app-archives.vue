@@ -49,7 +49,9 @@ export default {
     },
     methods: {
         date(ele) {
-            return ele.lastUpdated ? ele.lastUpdated : ele.frontmatter.date || new Date();
+            let date = ele.lastUpdated ? ele.lastUpdated : ele.frontmatter.date || new Date();
+            date = date.replace(/-/g, '/');
+            return date;
         }
     }
 };

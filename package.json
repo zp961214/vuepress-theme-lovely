@@ -13,6 +13,7 @@
     "vuepress-progressbar": "^0.0.3",
     "vuepress-theme-lovely": "^0.0.3",
     "node-sass": "^4.11.0",
+    "vue":"^2.5.16",
     "sass-loader": "^7.1.0",
     "@vuepress/plugin-clean-urls": "^1.0.0-alpha.44",
     "@vuepress/plugin-google-analytics": "^1.0.0-alpha.44",

@@ -20,7 +20,7 @@
                 </span>
                 <span class="read-times">
                     <span class="dot">•</span>
-                    <span class="label-desc">阅读次数</span>
+                    <span class="label-desc">阅读次数 {{ content.count }}</span>
                 </span>
             </div>
             <div class="post-content">
@@ -46,7 +46,9 @@ export default {
 
     computed: {
         date() {
-            return this.content.frontmatter.date || this.content.lastUpdated || new Date();
+            let date = this.content.frontmatter.date || this.content.lastUpdated || new Date();
+            date = date.replace(/-/g, '/');
+            return date;
         }
     },
 

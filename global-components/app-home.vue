@@ -8,6 +8,7 @@
 </template>
 
 <script>
+import axios from 'axios';
 import decodeUriComponent from 'decode-uri-component';
 import postItem from '@theme/components/post-item';
 import pagination from '@theme/components/pagination';
@@ -22,17 +23,12 @@ export default {
     data() {
         return {
             currNum: 1,
-            pageSize: 5
+            pageSize: 5,
+            items: []
         };
     },
 
     computed: {
-        items() {
-            const is_post = new RegExp(`^/post/(.*)/.*`);
-            const post = this.$site.pages.filter(v => is_post.test(v.path)).sort((a, b) => b.lastUpdated - a.lastUpdated);
-            return post.map(v => ((v.classify = decodeUriComponent(v.path.replace(is_post, '$1'))), v));
-        },
-
         total() {
             return this.items.length || 0;
         },
@@ -52,7 +48,31 @@ export default {
         currentChange(e) {
             this.scrollToView('page-main', '.');
             setTimeout(() => (this.currNum = e), 500);
+        },
+
+        getItems() {
+            const is_post = new RegExp(`^/post/(.*)/.*`);
+            const post = this.$site.pages
+                .filter(v => is_post.test(v.path))
+                .sort((a, b) => b.lastUpdated - a.lastUpdated)
+                .map(v => ((v.classify = decodeUriComponent(v.path.replace(is_post, '$1'))), v));
+            // .map(v => ((v.count = 1), v));
+            this.items = post;
         }
+    },
+    created() {
+        this.getItems();
+    },
+
+    async mounted() {
+        const { data: res } = await axios.get('http://izp.me/blog/post');
+        const data = res.result;
+        this.$site.pages.forEach(v => {
+            if (v.title) {
+                const index = data.findIndex(ele => ele[v.title]);
+                this.$set(v, 'count', data[index][v.title]);
+            }
+        });
     }
 };
 </script>
