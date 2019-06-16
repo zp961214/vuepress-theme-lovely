@@ -1,10 +1,21 @@
 <template>
-    <app-container id="home">
-        <post-item :content="content" :key="content.key" class="post-item" v-for="content in currentItems" />
-        <div class="pagetion-wrapper">
-            <pagination :current-page="currNum" :page-size="pageSize" :total="total" @current-change="currentChange" layout="prev, pager, next" />
-        </div>
-    </app-container>
+  <app-container id="home">
+    <post-item
+      :content="content"
+      :key="content.key"
+      class="post-item"
+      v-for="content in currentItems"
+    />
+    <div class="pagetion-wrapper">
+      <pagination
+        :current-page="currNum"
+        :page-size="pageSize"
+        :total="total"
+        @current-change="currentChange"
+        layout="prev, pager, next"
+      />
+    </div>
+  </app-container>
 </template>
 
 <script>
@@ -52,11 +63,12 @@ export default {
 
         getItems() {
             const is_post = new RegExp(`^/post/(.*)/.*`);
+            const getTime = time => new Date(time.replace(/\-/g, '/')).getTime();
+
             const post = this.$site.pages
                 .filter(v => is_post.test(v.path))
-                .sort((a, b) => b.lastUpdated - a.lastUpdated)
+                .sort((a, b) => (getTime(b.frontmatter.date) || getTime(b.lastUpdated)) - getTime(a.frontmatter.date || getTime(a.lastUpdated)))
                 .map(v => ((v.classify = decodeUriComponent(v.path.replace(is_post, '$1'))), v));
-            // .map(v => ((v.count = 1), v));
             this.items = post;
         }
     },

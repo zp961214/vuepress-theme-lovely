@@ -42,7 +42,7 @@ export default {
                 },
                 {
                     icon: 'icon-twitter',
-                    label: 'QQ'
+                    label: 'Twitter'
                 },
                 {
                     icon: 'icon-geren4',
